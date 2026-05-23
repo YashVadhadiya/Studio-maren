@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Maren — Interior Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Brand Palette */
+  --blue-primary:   #0474C4;
+  --blue-mid:       #5379AE;
+  --teal-dark:      #2C444C;
+  --blue-light:     #A8C4EC;
+  --navy-deep:      #06457F;
+  --navy-ink:       #262B40;
+
+  /* Surface tokens */
+  --canvas:         #F6F9FC;   /* cool off-white */
+  --canvas-warm:    #EBF1F8;   /* light sky tint */
+  --canvas-stone:   #DDE8F4;   /* soft blue-grey */
+  --tile-dark:      #06457F;   /* deep navy tile */
+  --tile-dark2:     #262B40;   /* near-black navy tile */
+
+  /* Text tokens */
+  --ink:            #262B40;
+  --ink-soft:       #2C444C;
+  --ink-muted:      #5379AE;
+  --ink-on-dark:    #ffffff;
+  --ink-muted-dark: #A8C4EC;
+
+  /* Interactive */
+  --accent:         #0474C4;
+  --accent-light:   #A8C4EC;
+  --accent-hover:   #06457F;
+  --hairline:       #C8DAF0;
+  --hairline-dark:  rgba(168,196,236,0.18);
+
+  /* Fonts */
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-body:    'DM Sans', system-ui, sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--ink);font-family:var(--ff-body);font-weight:300;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:var(--canvas);border-bottom:0.5px solid rgba(4,116,196,0.1)}
+.nav-logo{font-family:var(--ff-display);font-size:20px;font-weight:500;letter-spacing:0.06em;color:var(--navy-ink);text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff;padding:9px 22px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:transform .15s,background .2s}
+.nav-cta:hover{background:var(--accent-hover);transform:scale(0.97)}
+
+/* HERO */
+.hero{position:relative;min-height:calc(100vh - 60px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 60px 100px;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,69,127,0.82) 0%,rgba(38,43,64,0.35) 55%,rgba(4,116,196,0.08) 100%)}
+.hero-accent-line{position:absolute;top:120px;right:60px;width:1px;height:260px;background:rgba(168,196,236,0.3);z-index:2}
+.hero-eyebrow{font-size:11px;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--blue-light);margin-bottom:28px;position:relative;z-index:3;opacity:0;animation:fadeUp .9s .2s forwards}
+.hero-headline{font-family:var(--ff-display);font-size:clamp(50px,8vw,106px);font-weight:400;line-height:1.02;letter-spacing:-0.01em;color:#fff;position:relative;z-index:3;max-width:860px;opacity:0;animation:fadeUp .9s .4s forwards}
+.hero-headline em{font-style:italic;color:var(--blue-light)}
+.hero-sub{margin-top:32px;font-size:16px;font-weight:300;color:rgba(168,196,236,0.85);max-width:400px;line-height:1.8;position:relative;z-index:3;opacity:0;animation:fadeUp .9s .6s forwards}
+.hero-actions{margin-top:44px;display:flex;align-items:center;gap:24px;position:relative;z-index:3;opacity:0;animation:fadeUp .9s .8s forwards}
+.btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:100px;font-size:13px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;text-decoration:none;transition:transform .15s,background .2s;display:inline-block}
+.btn-primary:hover{background:var(--blue-light);color:var(--navy-ink);transform:scale(0.98)}
+.btn-ghost-hero{color:rgba(168,196,236,.9);font-size:13px;font-weight:400;letter-spacing:0.09em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(168,196,236,.35);padding-bottom:2px;transition:color .2s,border-color .2s}
+.btn-ghost-hero:hover{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.hero-scroll{position:absolute;bottom:48px;right:60px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,196,236,.45);writing-mode:vertical-rl;z-index:3;opacity:0;animation:fadeUp .9s 1.1s forwards}
+
+/* COMMON SECTION */
+section{padding:120px 60px}
+.section-eyebrow{font-size:11px;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:20px}
+.section-title{font-family:var(--ff-display);font-size:clamp(34px,4.5vw,56px);font-weight:400;line-height:1.1;color:var(--ink)}
+.section-title em{font-style:italic;color:var(--accent)}
+.divider{width:40px;height:2px;background:linear-gradient(to right,var(--accent),var(--blue-light));border-radius:2px;margin:28px 0}
+
+/* SERVICES */
+.services{background:var(--canvas-warm)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:80px;background:var(--hairline)}
+.service-card{background:var(--canvas-warm);padding:48px 36px;transition:background .3s}
+.service-card:hover{background:var(--canvas-stone)}
+.service-num{font-family:var(--ff-display);font-size:13px;font-style:italic;color:var(--accent);margin-bottom:26px;letter-spacing:.04em}
+.service-name{font-family:var(--ff-display);font-size:23px;font-weight:500;line-height:1.25;color:var(--ink);margin-bottom:13px}
+.service-desc{font-size:14px;font-weight:300;color:var(--ink-soft);line-height:1.8}
+
+/* PROJECTS */
+.projects{background:var(--canvas)}
+.projects-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:72px}
+.projects-intro{font-size:16px;font-weight:300;color:var(--ink-soft);line-height:1.85;max-width:360px;margin-top:20px}
+.projects-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.proj-card{position:relative;overflow:hidden;border-radius:4px;cursor:pointer}
+.proj-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.proj-card:hover img{transform:scale(1.05)}
+.proj-label{margin-top:14px}
+.proj-location{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:5px}
+.proj-name{font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink)}
+.img-tall{height:480px}
+.img-med{height:360px}
+.img-short{height:300px}
+.btn-ghost-light{color:var(--accent);font-size:13px;font-weight:400;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--blue-light);padding-bottom:2px;display:inline-block;transition:color .2s}
+.btn-ghost-light:hover{color:var(--navy-deep)}
+
+/* GALLERY STRIP */
+.gallery-strip{height:420px;display:flex;overflow:hidden}
+.gs-img{flex:1;overflow:hidden;cursor:pointer}
+.gs-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94),filter .5s}
+.gs-img:hover img{transform:scale(1.06);filter:brightness(1.05)}
+
+/* TRANSFORMATIONS */
+.transform{background:var(--tile-dark);padding:120px 60px;color:#fff}
+.transform .section-eyebrow{color:var(--blue-light);opacity:.6}
+.transform .section-title{color:#fff}
+.transform .section-title em{color:var(--blue-light)}
+.transform-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:80px;align-items:center}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:4px;overflow:hidden}
+.ba-img{aspect-ratio:4/3;position:relative;overflow:hidden}
+.ba-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ba-label{position:absolute;bottom:14px;left:14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:rgba(6,69,127,.6);backdrop-filter:blur(6px);padding:5px 12px;border-radius:100px}
+.transform-text h3{font-family:var(--ff-display);font-size:36px;font-weight:400;line-height:1.2;color:#fff;margin-bottom:20px}
+.transform-text p{font-size:15px;font-weight:300;line-height:1.85;color:rgba(168,196,236,.7);margin-bottom:18px}
+.btn-light{display:inline-block;background:var(--blue-light);color:var(--navy-ink);padding:14px 32px;border-radius:100px;font-size:13px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;margin-top:14px;transition:transform .15s,background .2s}
+.btn-light:hover{background:#fff;transform:scale(.98)}
+.transform-stat{display:flex;gap:48px;margin-top:48px;padding-top:48px;border-top:1px solid var(--hairline-dark)}
+.stat-val{font-family:var(--ff-display);font-size:48px;font-weight:400;color:#fff;display:block;line-height:1}
+.stat-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,196,236,.45);margin-top:7px;display:block}
+
+/* PROCESS */
+.process{background:var(--canvas-warm)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--hairline);margin-top:80px}
+.process-step{background:var(--canvas-warm);padding:48px 32px}
+.step-num{font-family:var(--ff-display);font-size:52px;font-weight:400;font-style:italic;line-height:1;color:var(--blue-light);margin-bottom:22px}
+.step-title{font-family:var(--ff-display);font-size:22px;font-weight:500;color:var(--ink);margin-bottom:12px}
+.step-desc{font-size:14px;font-weight:300;color:var(--ink-soft);line-height:1.8}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--canvas)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:72px}
+.t-card{padding:40px;border:1px solid var(--hairline);border-radius:4px;background:var(--canvas);transition:border-color .3s,box-shadow .3s}
+.t-card:hover{border-color:var(--blue-light);box-shadow:0 4px 32px rgba(4,116,196,.07)}
+.t-stars{color:var(--accent);font-size:13px;letter-spacing:3px;margin-bottom:20px}
+.t-text{font-family:var(--ff-display);font-size:17px;font-weight:400;font-style:italic;line-height:1.75;color:var(--ink-soft);margin-bottom:24px}
+.t-name{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+.t-project{font-size:12px;color:var(--ink-muted)}
+
+/* CONTACT */
+.contact{background:var(--tile-dark2);padding:120px 60px}
+.contact-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start}
+.contact .section-eyebrow{color:rgba(168,196,236,.5)}
+.contact .section-title{color:#fff}
+.contact .section-title em{color:var(--blue-light)}
+.contact-sub{font-size:15px;font-weight:300;color:rgba(168,196,236,.55);line-height:1.85;margin-top:22px;max-width:320px}
+.contact-info{margin-top:56px;display:flex;flex-direction:column;gap:28px}
+.ci-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(168,196,236,.35);margin-bottom:5px}
+.ci-val{font-size:15px;font-weight:300;color:rgba(168,196,236,.75)}
+.form-field{margin-bottom:20px}
+.form-label{display:block;font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(168,196,236,.35);margin-bottom:9px}
+.form-input,.form-textarea{width:100%;background:rgba(168,196,236,.06);border:1px solid rgba(168,196,236,.14);border-radius:4px;padding:13px 16px;font-family:var(--ff-body);font-size:15px;font-weight:300;color:#fff;transition:border-color .2s;outline:none}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(168,196,236,.25)}
+.form-input:focus,.form-textarea:focus{border-color:rgba(168,196,236,.45);background:rgba(168,196,236,.09)}
+.form-textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-submit{width:100%;background:var(--accent);color:#fff;border:none;padding:15px 32px;border-radius:100px;font-family:var(--ff-body);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:transform .15s,background .2s;margin-top:6px}
+.form-submit:hover{background:var(--blue-light);color:var(--navy-ink);transform:scale(.98)}
+
+footer{background:var(--navy-ink);padding:44px 60px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(83,121,174,.2)}
+.footer-logo{font-family:var(--ff-display);font-size:18px;font-weight:500;letter-spacing:.08em;color:rgba(255,255,255,.9)}
+.footer-copy{font-size:12px;color:rgba(168,196,236,.25);letter-spacing:.06em}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:12px;color:rgba(168,196,236,.35);text-decoration:none;letter-spacing:.09em;transition:color .2s}
+.footer-links a:hover{color:var(--blue-light)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.25,.46,.45,.94),transform .85s cubic-bezier(.25,.46,.45,.94)}
+.fade-in.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links{display:none}
+  section,footer{padding:80px 24px}
+  footer{flex-direction:column;gap:20px;text-align:center}
+  .hero{padding:0 24px 80px}
+  .projects-header,.transform-grid,.contact-inner,.testimonials-grid,.services-grid,.process-steps{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .proj-card:nth-child(n){grid-column:1/-1;margin-top:0}
+  .form-row{grid-template-columns:1fr}
+  .gallery-strip{height:220px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Studio Maren</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-cta">Start a Project</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <img class="hero-img" src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1" alt="Minimal living room interior">
+  <div class="hero-overlay"></div>
+  <div class="hero-accent-line"></div>
+  <p class="hero-eyebrow">Interior Design — Since 2011</p>
+  <h1 class="hero-headline">Spaces that<br>feel like <em>you.</em></h1>
+  <p class="hero-sub">We design calm, considered interiors for people who value the quiet beauty of things done with intention.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View Our Work</a>
+    <a href="#services" class="btn-ghost-hero">Our Services</a>
+  </div>
+  <span class="hero-scroll">Scroll</span>
+</section>
+
+<!-- SERVICES -->
+<section class="services fade-in" id="services">
+  <p class="section-eyebrow">What We Offer</p>
+  <h2 class="section-title">Every space,<br><em>reimagined</em></h2>
+  <div class="services-grid">
+    <div class="service-card"><p class="service-num">01</p><h3 class="service-name">Full Interior Design</h3><p class="service-desc">End-to-end design from concept to completion. Furniture, finishes, lighting, artwork — curated with precision.</p></div>
+    <div class="service-card"><p class="service-num">02</p><h3 class="service-name">Space Planning</h3><p class="service-desc">Strategic layout and flow that makes a room feel twice its size. We rethink how you move through your home.</p></div>
+    <div class="service-card"><p class="service-num">03</p><h3 class="service-name">Material & Finish Curation</h3><p class="service-desc">Bespoke material palettes — stone, linen, timber, plaster — selected to age beautifully and feel unmistakably considered.</p></div>
+    <div class="service-card"><p class="service-num">04</p><h3 class="service-name">Renovation Consulting</h3><p class="service-desc">Expert guidance through your build. We translate your brief into precise specifications contractors can execute.</p></div>
+    <div class="service-card"><p class="service-num">05</p><h3 class="service-name">Styling & Art Direction</h3><p class="service-desc">Final-mile styling that brings a room to life. Objects, art, botanicals — the small things that make a big difference.</p></div>
+    <div class="service-card"><p class="service-num">06</p><h3 class="service-name">Virtual Design</h3><p class="service-desc">Full design service delivered remotely. Mood boards, shopping lists, and 3D renders — wherever you are.</p></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects fade-in" id="projects">
+  <div class="projects-header">
+    <div>
+      <p class="section-eyebrow">Residential Projects</p>
+      <h2 class="section-title">Where we've<br><em>left our mark</em></h2>
+    </div>
+    <div>
+      <p class="projects-intro">A selection of homes we've had the privilege of shaping. Each one a deeply personal collaboration — no two alike.</p>
+      <div class="divider"></div>
+      <a href="#contact" class="btn-ghost-light">Discuss Your Project →</a>
+    </div>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card" style="grid-column:1/6">
+      <img class="img-tall" src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800&h=1060&dpr=1" alt="The Marais Apartment">
+      <div class="proj-label"><p class="proj-location">Paris, France</p><p class="proj-name">The Marais Apartment</p></div>
+    </div>
+    <div class="proj-card" style="grid-column:6/10;margin-top:80px">
+      <img class="img-med" src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=640&h=800&dpr=1" alt="Kensington Townhouse">
+      <div class="proj-label"><p class="proj-location">London, England</p><p class="proj-name">Kensington Townhouse</p></div>
+    </div>
+    <div class="proj-card" style="grid-column:10/13;margin-top:32px">
+      <img class="img-short" src="https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg?auto=compress&cs=tinysrgb&w=480&h=640&dpr=1" alt="Lake Como Villa">
+      <div class="proj-label"><p class="proj-location">Como, Italy</p><p class="proj-name">Lake Como Villa</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<div class="gallery-strip fade-in">
+  <div class="gs-img"><img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg?auto=compress&cs=tinysrgb&w=500&h=420&dpr=1" alt="Bedroom interior"></div>
+  <div class="gs-img"><img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=500&h=420&dpr=1" alt="Dining room"></div>
+  <div class="gs-img"><img src="https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=500&h=420&dpr=1" alt="Modern kitchen"></div>
+  <div class="gs-img"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=500&h=420&dpr=1" alt="Minimal living space"></div>
+  <div class="gs-img"><img src="https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=500&h=420&dpr=1" alt="Interior detail"></div>
+</div>
+
+<!-- TRANSFORMATIONS -->
+<section class="transform fade-in" id="transformations">
+  <p class="section-eyebrow">Space Transformations</p>
+  <h2 class="section-title">The power of<br><em>the before & after</em></h2>
+  <div class="transform-grid">
+    <div>
+      <div class="before-after">
+        <div class="ba-img"><img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&dpr=1" alt="Before renovation"><span class="ba-label">Before</span></div>
+        <div class="ba-img"><img src="https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&dpr=1" alt="After renovation"><span class="ba-label">After</span></div>
+      </div>
+    </div>
+    <div class="transform-text">
+      <h3>A dated living room becomes a calm, considered sanctuary</h3>
+      <p>The brief was simple: make it feel like us. A dated interior was stripped back to its bones and rebuilt around natural plaster, oak, and a palette that breathes with the light.</p>
+      <p>Six weeks. One home. Completely transformed.</p>
+      <a href="#contact" class="btn-light">Start Your Transformation</a>
+      <div class="transform-stat">
+        <div><span class="stat-val">47</span><span class="stat-label">Projects Completed</span></div>
+        <div><span class="stat-val">12</span><span class="stat-label">Years in Practice</span></div>
+        <div><span class="stat-val">6</span><span class="stat-label">Countries</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process fade-in" id="process">
+  <p class="section-eyebrow">How We Work</p>
+  <h2 class="section-title">A process as<br><em>considered</em> as the result</h2>
+  <div class="process-steps">
+    <div class="process-step"><p class="step-num">01</p><h3 class="step-title">Discovery</h3><p class="step-desc">A deep conversation about how you live, what you love, and what the space needs to do for you. No forms — just listening.</p></div>
+    <div class="process-step"><p class="step-num">02</p><h3 class="step-title">Concept</h3><p class="step-desc">A richly detailed direction: mood boards, material samples, spatial layouts, and a clear visual story for your approval.</p></div>
+    <div class="process-step"><p class="step-num">03</p><h3 class="step-title">Design</h3><p class="step-desc">Full technical drawings, specification packs, and sourcing. Every piece selected, every material confirmed.</p></div>
+    <div class="process-step"><p class="step-num">04</p><h3 class="step-title">Delivery</h3><p class="step-desc">We oversee every aspect of installation, then style the final result until it's exactly right — and hand you the keys.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials fade-in" id="testimonials">
+  <div style="text-align:center">
+    <p class="section-eyebrow" style="text-align:center">Client Words</p>
+    <h2 class="section-title" style="text-align:center">What people say</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="t-card"><div class="t-stars">★ ★ ★ ★ ★</div><p class="t-text">"Studio Maren transformed our apartment into something we couldn't have imagined. Every visit home now feels like a small luxury."</p><p class="t-name">Isabelle & Tom Richter</p><p class="t-project">The Marais Apartment, Paris</p></div>
+    <div class="t-card"><div class="t-stars">★ ★ ★ ★ ★</div><p class="t-text">"The process was effortless. They understood our brief on the first call and delivered something more beautiful than we'd dared hope for."</p><p class="t-name">Priya Anand</p><p class="t-project">Kensington Townhouse, London</p></div>
+    <div class="t-card"><div class="t-stars">★ ★ ★ ★ ★</div><p class="t-text">"We've worked with designers before, but never like this. The attention to detail was extraordinary. Our home now tells our story."</p><p class="t-name">Marco & Elisa Ferraro</p><p class="t-project">Lake Como Villa, Italy</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact fade-in" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="section-eyebrow">Get in Touch</p>
+      <h2 class="section-title">Let's create<br>something<br><em>together.</em></h2>
+      <p class="contact-sub">Tell us about your project — we'd love to hear about the space you have and the life you want to live in it.</p>
+      <div class="contact-info">
+        <div><p class="ci-label">Studio</p><p class="ci-val">14 Rue du Bac, Paris 75007</p></div>
+        <div><p class="ci-label">Email</p><p class="ci-val">hello@studiomaren.com</p></div>
+        <div><p class="ci-label">Phone</p><p class="ci-val">+33 1 42 68 14 72</p></div>
+      </div>
+    </div>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="Isabelle"></div>
+        <div class="form-field"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Richter"></div>
+      </div>
+      <div class="form-field"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="hello@example.com"></div>
+      <div class="form-field"><label class="form-label">Project Type</label><input type="text" class="form-input" placeholder="Full design, styling, renovation…"></div>
+      <div class="form-field"><label class="form-label">Tell Us About Your Space</label><textarea class="form-textarea" placeholder="Location, size, timeline, and anything else you'd like us to know…"></textarea></div>
+      <button type="submit" class="form-submit">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Studio Maren</span>
+  <div class="footer-links">
+    <a href="#services">Services</a><a href="#projects">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a>
+  </div>
+  <span class="footer-copy">© <span id="year"></span> Studio Maren. All rights reserved.</span>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#A8C4EC';
+  btn.style.color = '#262B40';
+  setTimeout(() => { btn.textContent = 'Send Enquiry'; btn.style.background=''; btn.style.color=''; e.target.reset(); }, 3000);
+}
+</script>
+</body>
+</html>
